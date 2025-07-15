@@ -5,20 +5,13 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Select = ({
-  selection,
-  onChange,
-  name,
-  titleEmpty,
-  label,
-  type = "normal",
-}) => {
+const Select = ({ selection, onChange, name, titleEmpty, label, type = "normal", }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+    onChange(newValue); // Ajout newvalue
     setValue(newValue);
-    setCollapsed(newValue);
+    setCollapsed(true); // remplacer true par newvalue
   };
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">

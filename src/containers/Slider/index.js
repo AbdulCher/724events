@@ -28,7 +28,7 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateDesc.map((event) => (
         <div
-          key={event.id} // ✅ clé stable ici
+          key={event.id} // clé stable ici
           className={`SlideCard ${
             index === byDateDesc.indexOf(event) ? "SlideCard--display" : "SlideCard--hide"
           }`}
@@ -45,7 +45,7 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((evt) => (
                 <input
-                  key={`radio-${evt.id}`} // ✅ clé stable pour le radio
+                  key={`radio-${evt.id}`} // clé stable pour le radio
                   type="radio"
                   name={`radio-button-${event.id}`}
                   checked={byDateDesc.indexOf(event) === byDateDesc.indexOf(evt)}

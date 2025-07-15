@@ -13,28 +13,32 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = (
-    (!type
-      ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
+
+  // 1. Tous les événements ou seulement ceux du type sélectionné
+  const filteredByType = data?.events?.filter(
+    (event) => !type || event.type === type
+  ) || [];
+
+  // 2. Nombre de pages total, calculé sur tous les événements filtrés
+  const pageNumber = Math.ceil(filteredByType.length / PER_PAGE);
+
+  // 3. Découpe de la page courante
+  const paginatedEvents = filteredByType.slice(
+    (currentPage - 1) * PER_PAGE,
+    currentPage * PER_PAGE
+  );
+
   const changeType = (evtType) => {
-    setCurrentPage(1);
+    setCurrentPage(1); // Revenir à la première page quand on change de filtre
     setType(evtType);
   };
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+
+  // Liste des types uniques pour le select
   const typeList = new Set(data?.events.map((event) => event.type));
+
   return (
     <>
-      {error && <div>An error occured</div>}
+      {error && <div>An error occurred</div>}
       {data === null ? (
         "loading"
       ) : (
@@ -45,7 +49,7 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
-            {filteredEvents.map((event) => (
+            {paginatedEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
@@ -60,9 +64,8 @@ const EventList = () => {
             ))}
           </div>
           <div className="Pagination">
-            {[...Array(pageNumber || 0)].map((_, n) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
+            {[...Array(pageNumber)].map((_, n) => (
+              <a key={`page-${n + 1}`} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
               </a>
             ))}
