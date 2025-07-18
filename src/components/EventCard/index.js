@@ -2,7 +2,16 @@ import PropTypes from "prop-types";
 import { getMonth } from "../../helpers/Date";
 import "./style.scss";
 
-const EventCard = ({ imageSrc, imageAlt, date = new Date(), title, label, small = false, ...props }) => (
+const EventCard = ({
+  imageSrc,
+  imageAlt = "image",     // valeur par défaut ici
+  date = new Date(),      // valeur par défaut ici
+  title,
+  label,
+  small = false,          // valeur par défaut ici
+  ...props
+}) => (
+
     <div
       data-testid="card-testid"
       className={`EventCard${small ? " EventCard--small" : ""}`}
