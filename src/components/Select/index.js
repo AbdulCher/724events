@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Select = ({ selection, onChange, name, titleEmpty, label, type = "normal", }) => {
+const Select = ({ selection, onChange = () => null, name = "select", titleEmpty = "false", label = "", type = "normal", }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
@@ -81,14 +81,6 @@ Select.propTypes = {
   titleEmpty: PropTypes.bool,
   label: PropTypes.string,
   type: PropTypes.string,
-}
-
-Select.defaultProps = {
-  onChange: () => null,
-  titleEmpty: false,
-  label: "",
-  type: "normal",
-  name: "select",
 }
 
 export default Select;
