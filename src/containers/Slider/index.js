@@ -28,7 +28,7 @@ const Slider = () => {
     <div className="SlideCardList">
       {byDateDesc.map((event, i) => (
         <div
-          key={`slide-${event.id}`} // ✅ clé unique et stable
+          key={`slide-${event.id}`} // clé unique et stable
           className={`SlideCard ${
             index === i ? "SlideCard--display" : "SlideCard--hide"
           }`}
@@ -44,12 +44,12 @@ const Slider = () => {
         </div>
       ))}
 
-      {/* ✅ Radio en dehors de chaque slide */}
+      {/* Radio en dehors de chaque slide */}
       <div className="SlideCard__paginationContainer">
         <div className="SlideCard__pagination">
           {byDateDesc.map((event, i) => (
             <input
-              key={`radio-${event.id}`} // ✅ unique par event
+              key={`radio-${event.id}`} // unique par event
               type="radio"
               name="slider-pagination"
               checked={index === i}

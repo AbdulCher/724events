@@ -34,7 +34,7 @@ export const DataProvider = ({ children }) => {
     }
   }, [data, getData]); // Ajout de dependance eviter appel infini
   
-  // 🔥 ici on récupère le dernier élément
+  // ici on récupère le dernier élément
   const last = data?.[data.length - 1];
   return (
     <DataContext.Provider

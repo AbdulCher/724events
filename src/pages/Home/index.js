@@ -123,7 +123,7 @@ const Page = () => {
     </main>
     <footer className="row">
       <div className="col presta">
-        <h3>Notre derniére prestation</h3>
+        <h3>Notre dernière prestation</h3>
         {last && (
             <EventCard
               imageSrc={last?.cover}
@@ -140,18 +140,21 @@ const Page = () => {
         <div>01 23 45 67 89</div>
         <div>contact@724events.com</div>
         <div>
-          <a href="#twitch">
+          <div>
+          <a href="https://www.twitch.tv" aria-label="twitch" target="_blank" rel="noopener noreferrer">
             <Icon name="twitch" />
           </a>
-          <a href="#facebook">
+          <a href="https://www.facebook.com" aria-label="facebook" target="_blank" rel="noopener noreferrer">
             <Icon name="facebook" />
           </a>
-          <a href="#twitter">
+          <a href="https://www.twitter.com" aria-label="twitter" target="_blank" rel="noopener noreferrer">
             <Icon name="twitter" />
           </a>
-          <a href="#youtube">
+          <a href="https://www.youtube.com" aria-label="youtube" target="_blank" rel="noopener noreferrer">
             <Icon name="youtube" />
           </a>
+        </div>
+
         </div>
       </div>
       <div className="col description">
